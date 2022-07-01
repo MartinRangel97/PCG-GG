@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 189705205}
   - component: {fileID: 189705208}
   - component: {fileID: 189705207}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806239190}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 978538409}
   - component: {fileID: 978538411}
   - component: {fileID: 978538412}
+  - component: {fileID: 978538413}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -427,7 +428,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &978538411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +543,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b5fab1b5923fd4fa2b88817ba18f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &978538413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978538407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d516c8d54fc52419a2bf209e6847cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfJumps: 2
 --- !u!1 &1943215993
 GameObject:
   m_ObjectHideFlags: 0
