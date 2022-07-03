@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D PlayerRB;
+    private Rigidbody2D playerRB;
     private PlayerInput playerInput;
     private MyPlayerActions inputActions;
     private PlayerStats playerStats;
@@ -14,39 +14,83 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 2f;
 
     private bool isGrounded = true;
-    private int numberOfJumps;
+    public int numberOfJumps;
+
+    public float dashForce;
+    public float startDashTimer;
+    float currentDashTimer;
+    float dashDirection;
+    private bool isDashing;
+    public int numberOfDashes;
 
     private void Awake()
     {
-        PlayerRB = GetComponent<Rigidbody2D>();
+        playerRB = GetComponent<Rigidbody2D>();
         inputActions = new MyPlayerActions();
         inputActions.Player.Enable();
-        inputActions.Player.Jump.performed += Jump;
         playerStats = GetComponent<PlayerStats>();
     }
 
     private void FixedUpdate()
     {
-        PlayerRB.velocity = new Vector2(inputX * moveSpeed, PlayerRB.velocity.y);
+        if (isDashing)
+        {
+            playerRB.velocity = transform.right * dashDirection * dashForce;
+            currentDashTimer -= Time.deltaTime;
+
+            if(currentDashTimer <= 0)
+            {
+                isDashing = false;
+            }
+        } 
+        else
+        {
+            playerRB.velocity = new Vector2(inputX * moveSpeed, playerRB.velocity.y);
+        }
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void OnJump()
     {
         if (isGrounded)
         {
-            PlayerRB.velocity = new Vector2(PlayerRB.velocity.y, 5f);
+            playerRB.velocity = new Vector2(playerRB.velocity.y, 5f);
             numberOfJumps++;
-        } else if (numberOfJumps < playerStats.Jumps)
-        {
-            PlayerRB.velocity = Vector2.zero;
-            PlayerRB.velocity = new Vector2(PlayerRB.velocity.y, 5f);
         }
-           
+        else if (numberOfJumps < playerStats.Jumps)
+        {
+            playerRB.velocity = Vector2.zero;
+            playerRB.velocity = new Vector2(playerRB.velocity.y, 5f);
+            numberOfJumps++;
+        }
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public void OnMovement(InputValue inputValue)
     {
-        inputX = context.ReadValue<Vector2>().x;
+        inputX = inputValue.Get<Vector2>().x;
+    }
+
+    public void OnDashLeft()
+    {
+        if(numberOfDashes < playerStats.Dashes)
+        {
+            numberOfDashes++;
+            isDashing = true;
+            currentDashTimer = startDashTimer;
+            playerRB.velocity = Vector2.zero;
+            dashDirection = -1f;
+        }
+    }
+
+    public void OnDashRight()
+    {
+        if (numberOfDashes < playerStats.Dashes)
+        {
+            numberOfDashes++;
+            isDashing = true;
+            currentDashTimer = startDashTimer;
+            playerRB.velocity = Vector2.zero;
+            dashDirection = 1f;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,6 +99,15 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             numberOfJumps = 0;
+            numberOfDashes = 0;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("Floor"))
+        {
+            numberOfDashes = 0;
         }
     }
 

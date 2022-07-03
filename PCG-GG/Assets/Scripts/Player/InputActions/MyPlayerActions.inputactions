@@ -19,6 +19,22 @@
                     "id": "d35548b3-075b-489c-9276-9f0d3efea817",
                     "expectedControlType": "Vector2",
                     "processors": "",
+                    "interactions": "Press(pressPoint=0.001,behavior=2)"
+                },
+                {
+                    "name": "DashLeft",
+                    "type": "Button",
+                    "id": "31ab69a1-49f3-441c-998b-7d6758d99a82",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "DashRight",
+                    "type": "Button",
+                    "id": "92d98415-cebe-47cb-b72a-697fd8456ab3",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": "Press"
                 }
             ],
@@ -88,6 +104,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ebdcee0f-f1d9-4df7-a339-6b83d1106835",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DashLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12f5c137-e256-452b-99b6-2741f839d54d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DashRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
