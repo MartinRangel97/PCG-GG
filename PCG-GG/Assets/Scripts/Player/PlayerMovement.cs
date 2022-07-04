@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isFalling;
     public bool isGliding = false;
+    public float glideTimer;
 
     private void Awake()
     {
@@ -64,9 +65,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (isFalling)
         {
-            if (isGliding)
+            if (isGliding && glideTimer <= playerStats.Glide )
             {
                 playerRB.gravityScale = .25f;
+                glideTimer += Time.deltaTime;
             }
             else
             {
@@ -149,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
             numberOfDashes = 0;
             isGliding = false;
             playerRB.gravityScale = 1;
+            glideTimer = 0;
         }
     }
 

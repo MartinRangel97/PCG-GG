@@ -10,6 +10,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int numberOfDashes = 2;
 
+    [SerializeField]
+    private float glideTimer = 1f;
     public int Jumps
     {
         get
@@ -23,6 +25,14 @@ public class PlayerStats : MonoBehaviour
         get
         {
             return numberOfDashes;
+        }
+    }
+
+    public float Glide
+    {
+        get
+        {
+            return glideTimer;
         }
     }
 }
