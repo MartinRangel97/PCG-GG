@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: eb311db848c6d5240b5cfb8104add9a0, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -455,66 +455,70 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 978538412}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9c0a89bd-94d6-454b-a53b-43bd303c2188
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 791f7603-387e-48ef-878f-52f4bd23970e
+    m_ActionId: 063fbedd-efa4-4002-8b20-a5c1f90584a5
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b5d74857-d07f-494e-a9d7-100a2ee079ca
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 05130eaa-ad95-4037-a95a-b670837cea7a
+    m_ActionId: 475f0d5b-a1b0-413c-96ec-ad751d7c3052
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e5f3d533-c952-421d-82b8-e55d830f5cbd
+    m_ActionId: 86967d83-a325-4a60-8057-686dabbae86e
     m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a9754fcc-25c7-445f-ac0f-9ef387ffc974
+    m_ActionId: 8a104d43-8879-407e-b521-d963d9b8210a
     m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 4bf18e54-8f59-4863-a6a0-4c854367d1e4
+    m_ActionId: 114f8b89-e0be-4089-962c-8ae583709233
     m_ActionName: UI/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 6ec907c5-b8a3-4492-a8e9-077926b37d97
+    m_ActionId: 56858d53-09c0-4da2-b9bf-938a80178a76
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 539c0282-f228-40e5-8a82-99a566b48728
+    m_ActionId: 55dcd6ca-b35f-473c-8fcb-049c3dfe4632
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f93d1fb7-ef1c-4255-bb5b-07c45845f416
+    m_ActionId: abcc7541-0f53-4ed8-a4ba-7f2dedab45b6
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 487350bd-7317-412a-b0d2-f26846d2f6fb
+    m_ActionId: d03090d8-35f6-4aee-b565-57e3354d8297
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: de541627-00b6-471a-9bfc-5dcf03a2a0a9
+    m_ActionId: 008ba0d7-0387-4185-b5ce-48e07c027318
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 978538412}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 81943531-69e9-44f2-b60e-70af563afe71
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 978538412}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Move
+        m_MethodName: OnDashRight
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -524,13 +528,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: d35548b3-075b-489c-9276-9f0d3efea817
-    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionId: 8fe57875-111c-4ae6-a707-ee72d3ed2405
+    m_ActionName: Player/DashRight[/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 978538412}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: DashLeft
+        m_MethodName: OnDashLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -540,13 +544,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 31ab69a1-49f3-441c-998b-7d6758d99a82
+    m_ActionId: a59eb4e8-17ff-40c7-b7b4-9f8a94153725
     m_ActionName: Player/DashLeft[/Keyboard/a]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 978538412}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: DashRight
+        m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -556,8 +560,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 92d98415-cebe-47cb-b72a-697fd8456ab3
-    m_ActionName: Player/DashRight[/Keyboard/d]
+    m_ActionId: 72b4a75a-e35d-497b-88be-30e06cea9f84
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 978538412}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnGlide
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 32146db9-2d75-4184-baaa-cafbebb048f4
+    m_ActionName: Player/Glide[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -575,8 +595,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b5fab1b5923fd4fa2b88817ba18f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfJumps: 0
+  jumpForce: 7
   dashForce: 15
   startDashTimer: 0.25
+  numberOfDashes: 0
+  isFalling: 0
+  isGliding: 0
 --- !u!114 &978538413
 MonoBehaviour:
   m_ObjectHideFlags: 0
