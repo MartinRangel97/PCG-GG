@@ -423,7 +423,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -597,11 +597,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfJumps: 0
   jumpForce: 7
-  dashForce: 15
+  dashForce: 10
   startDashTimer: 0.25
   numberOfDashes: 0
   isFalling: 0
   isGliding: 0
+  glideTimer: 0
 --- !u!114 &978538413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,6 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfJumps: 2
   numberOfDashes: 2
+  glideTimer: 1
 --- !u!1 &1943215993
 GameObject:
   m_ObjectHideFlags: 0

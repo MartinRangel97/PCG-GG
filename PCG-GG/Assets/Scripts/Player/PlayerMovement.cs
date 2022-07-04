@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGliding && glideTimer <= playerStats.Glide )
             {
-                playerRB.gravityScale = .25f;
+                playerRB.gravityScale = .1f;
                 glideTimer += Time.deltaTime;
             }
             else
