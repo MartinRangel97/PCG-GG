@@ -16,7 +16,9 @@ public class RulesData : MonoBehaviour
         Start.LeftHand = new String[] { "Start" };
         Start.RightHand = new String[]
         {
-                "Entrance-Task-Goal"
+                "Entrance-Task-Goal",
+                "Entrance-Task-Task-Goal",
+                "Entrance-Task-Task-Task-Goal"
         };
 
         Rule AddTask = new Rule();
@@ -42,7 +44,10 @@ public class RulesData : MonoBehaviour
         AddMovement1.RightHand = new String[]
         {
                 "BasicMovement-fight",
-                "ExtendedMovement-fight"
+                "ExtendedMovement-fight",
+                "BasicMovement-ExtendedMovement-fight",
+                "ExtendedMovement-BasicMovement-fight",
+                "BasicMovement-ExtendedMovement-ExtendedMovement-fight"
         };
 
         Rule AddMovement2 = new Rule();
@@ -50,7 +55,10 @@ public class RulesData : MonoBehaviour
         AddMovement2.RightHand = new String[]
         {
                 "BasicMovement-key",
-                "ExtendedMovement-key"
+                "ExtendedMovement-key",
+                "BasicMovement-ExtendedMovement-key",
+                "ExtendedMovement-BasicMovement-key",
+                "BasicMovement-ExtendedMovement-ExtendedMovement-key"
         };
 
         Rule AddMovement3 = new Rule();
@@ -58,30 +66,43 @@ public class RulesData : MonoBehaviour
         AddMovement3.RightHand = new String[]
         {
                 "BasicMovement-lock",
-                "ExtendedMovement-lock"
+                "ExtendedMovement-lock",
+                "BasicMovement-ExtendedMovement-lock",
+                "ExtendedMovement-BasicMovement-lock",
+                "BasicMovement-ExtendedMovement-ExtendedMovement-lock"
         };
 
         Rule BasicMovement = new Rule();
         BasicMovement.LeftHand = new String[] { "BasicMovement" };
         BasicMovement.RightHand = new String[]
         {
-                "left-Jump",
-                "right-Jump"
+
+                "left-jump",
+                "right-jump",
         };
 
         Rule ExtendedMovement = new Rule();
         ExtendedMovement.LeftHand = new String[] { "ExtendedMovement" };
         ExtendedMovement.RightHand = new String[]
         {
-                "Dash",
-                "DoubleDash",
-                "DoubleJump",
-                "Glide"
+                "dash",
+                "glide",
+                "extraJump"
         };
 
+        Rule DoubleJump1 = new Rule();
+        DoubleJump1.LeftHand = new String[] { "jump-extraJump" };
+        DoubleJump1.RightHand = new String[] { "doubleJump" };
 
-        ProductionRules = new Rule[] { Start, AddTask, AddEndTask, AddMovement1, AddMovement2, AddMovement3, BasicMovement, ExtendedMovement };
+        Rule DoubleJump2 = new Rule();
+        DoubleJump2.LeftHand = new String[] { "extraJump-jump" };
+        DoubleJump2.RightHand = new String[] { "doubleJump" };
+
+        Rule DoubleDash = new Rule();
+        DoubleDash.LeftHand = new String[] { "dash-dash" };
+        DoubleDash.RightHand = new String[] { "doubleDash" };
+
+
+        ProductionRules = new Rule[] { Start, AddTask, AddEndTask, AddMovement1, AddMovement2, AddMovement3, BasicMovement, ExtendedMovement, DoubleJump1, DoubleJump2, DoubleDash };
     }
-
-    
 }

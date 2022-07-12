@@ -30,12 +30,14 @@ public class GenerateGraph : MonoBehaviour
                 int r = rnd.Next(pick.RightHand.Length);
 
                 graph = graph.Replace(pick.LeftHand[0], pick.RightHand[r]);
+                Debug.Log(graph);
                 Expand(Production, graph);
 
             }
             else
             {
                 graph = graph.Replace(pick.LeftHand[0], pick.RightHand[0]);
+                Debug.Log(graph);
                 Expand(Production, graph);
             }
         }
