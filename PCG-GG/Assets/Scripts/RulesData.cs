@@ -13,14 +13,16 @@ public class RulesData : MonoBehaviour
         //Lowercase first letter = Terminal
 
         Rule Start = new Rule();
-        Start.LeftHand = new String[] { "Start" };
+        Start.LeftHand =  "Start" ;
         Start.RightHand = new String[]
         {
-                "Entrance-Task-Goal"
+                //"Entrance-Task-Goal",
+                //"Entrance-Task-Task-Goal",
+                "Entrance-Task-Task-Task-Goal"
         };
 
         Rule AddTask = new Rule();
-        AddTask.LeftHand = new String[] { "Task" };
+        AddTask.LeftHand =  "Task" ;
         AddTask.RightHand = new String[]
         {
                 "Fight",
@@ -28,7 +30,7 @@ public class RulesData : MonoBehaviour
         };
 
         Rule AddEndTask = new Rule();
-        AddEndTask.LeftHand = new String[] { "Task-Goal" };
+        AddEndTask.LeftHand = "Task-Goal" ;
         AddEndTask.RightHand = new String[]
         {
                 "Fight-Goal",
@@ -38,50 +40,65 @@ public class RulesData : MonoBehaviour
         //--------------------Movement Rules---------------------------
 
         Rule AddMovement1 = new Rule();
-        AddMovement1.LeftHand = new String[] { "Fight" };
+        AddMovement1.LeftHand = "Fight" ;
         AddMovement1.RightHand = new String[]
         {
                 "BasicMovement-fight",
-                "ExtendedMovement-fight"
+                "ExtendedMovement-fight",
+                "BasicMovement-ExtendedMovement-fight",
+                "ExtendedMovement-BasicMovement-fight",
+                "BasicMovement-ExtendedMovement-ExtendedMovement-fight"
         };
 
         Rule AddMovement2 = new Rule();
-        AddMovement2.LeftHand = new String[] { "Key" };
+        AddMovement2.LeftHand =  "Key" ;
         AddMovement2.RightHand = new String[]
         {
                 "BasicMovement-key",
-                "ExtendedMovement-key"
+                "ExtendedMovement-key",
+                "BasicMovement-ExtendedMovement-key",
+                "ExtendedMovement-BasicMovement-key",
+                "BasicMovement-ExtendedMovement-ExtendedMovement-key"
         };
 
         Rule AddMovement3 = new Rule();
-        AddMovement3.LeftHand = new String[] { "Lock" };
+        AddMovement3.LeftHand = "Lock" ;
         AddMovement3.RightHand = new String[]
         {
                 "BasicMovement-lock",
-                "ExtendedMovement-lock"
+                "ExtendedMovement-lock",
+                "BasicMovement-ExtendedMovement-lock",
+                "ExtendedMovement-BasicMovement-lock",
+                "BasicMovement-ExtendedMovement-ExtendedMovement-lock"
         };
 
         Rule BasicMovement = new Rule();
-        BasicMovement.LeftHand = new String[] { "BasicMovement" };
+        BasicMovement.LeftHand =  "BasicMovement" ;
         BasicMovement.RightHand = new String[]
         {
-                "left-Jump",
-                "right-Jump"
+
+                "left-jump",
+                "right-jump",
         };
 
         Rule ExtendedMovement = new Rule();
-        ExtendedMovement.LeftHand = new String[] { "ExtendedMovement" };
+        ExtendedMovement.LeftHand = "ExtendedMovement" ;
         ExtendedMovement.RightHand = new String[]
         {
-                "Dash",
-                "DoubleDash",
-                "DoubleJump",
-                "Glide"
+                "dash",
+                "glide",
+                "extraJump"
         };
 
+        Rule DoubleJump = new Rule();
+        DoubleJump.LeftHand =  "jump-jump" ;
+        DoubleJump.RightHand = new String[] { "doubleJump" };
 
-        ProductionRules = new Rule[] { Start, AddTask, AddEndTask, AddMovement1, AddMovement2, AddMovement3, BasicMovement, ExtendedMovement };
+        Rule DoubleDash = new Rule();
+        DoubleDash.LeftHand =  "dash-dash" ;
+        DoubleDash.RightHand = new String[] { "doubleDash" };
+
+
+        ProductionRules = new Rule[] { Start, AddTask, AddEndTask, AddMovement1, AddMovement2, AddMovement3, BasicMovement, ExtendedMovement, DoubleJump, DoubleDash };
     }
-
-    
 }
