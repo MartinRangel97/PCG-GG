@@ -6,6 +6,7 @@ using System;
 public class GenerateGraph : MonoBehaviour
 {
     private string MainGraph = "Start";
+    private System.Random rnd = new System.Random();
 
     private void Awake()
     {
@@ -20,29 +21,46 @@ public class GenerateGraph : MonoBehaviour
 
     private void Expand(Rule[] Production, String graph)
     {
-        Rule pick = Array.Find(Production, findrule => graph.Contains(findrule.LeftHand[0]));
+        Debug.Log("-----------------------New Evolution-----------------");
+        Rule pick = Array.Find(Production, findrule => graph.Contains(findrule.LeftHand));
+        string newGraph = "";
 
         if (pick != null)
         {
-            if (pick.RightHand.Length > 1)
+            String[] splitGraph = graph.Split('-');
+            for (var i = 0; i < splitGraph.Length; i++)
             {
-                System.Random rnd = new System.Random();
-                int r = rnd.Next(pick.RightHand.Length);
-
-                graph = graph.Replace(pick.LeftHand[0], pick.RightHand[r]);
-                Debug.Log(graph);
-                Expand(Production, graph);
-
+                if (pick.LeftHand.Equals(splitGraph[i]))
+                {
+                    if (pick.RightHand.Length > 1)
+                    {
+                        int r = rnd.Next(0, pick.RightHand.Length);
+                        splitGraph[i] = pick.RightHand[r];
+                        newGraph = newGraph + "-" + pick.RightHand[r];
+                        Debug.Log(pick.LeftHand + " -> " + pick.RightHand[r]); 
+                    }
+                    else
+                    {
+                        newGraph = newGraph + "-" + pick.RightHand[0];
+                        Debug.Log(pick.LeftHand + " -> " + pick.RightHand[0]);
+                    }
+                }
+                else
+                {
+                    newGraph = newGraph + "-" + splitGraph[i];
+                    Debug.Log(splitGraph[i]);
+                }
+                
             }
-            else
-            {
-                graph = graph.Replace(pick.LeftHand[0], pick.RightHand[0]);
-                Debug.Log(graph);
-                Expand(Production, graph);
-            }
+
+            
+            graph = newGraph;
+            Debug.Log(graph);
+            Expand(Production, graph);
         }
         else
         {
+            Debug.Log("Done");
             Debug.Log(graph);
         }
     }

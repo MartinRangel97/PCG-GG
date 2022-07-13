@@ -13,16 +13,16 @@ public class RulesData : MonoBehaviour
         //Lowercase first letter = Terminal
 
         Rule Start = new Rule();
-        Start.LeftHand = new String[] { "Start" };
+        Start.LeftHand =  "Start" ;
         Start.RightHand = new String[]
         {
-                "Entrance-Task-Goal",
-                "Entrance-Task-Task-Goal",
+                //"Entrance-Task-Goal",
+                //"Entrance-Task-Task-Goal",
                 "Entrance-Task-Task-Task-Goal"
         };
 
         Rule AddTask = new Rule();
-        AddTask.LeftHand = new String[] { "Task" };
+        AddTask.LeftHand =  "Task" ;
         AddTask.RightHand = new String[]
         {
                 "Fight",
@@ -30,7 +30,7 @@ public class RulesData : MonoBehaviour
         };
 
         Rule AddEndTask = new Rule();
-        AddEndTask.LeftHand = new String[] { "Task-Goal" };
+        AddEndTask.LeftHand = "Task-Goal" ;
         AddEndTask.RightHand = new String[]
         {
                 "Fight-Goal",
@@ -40,7 +40,7 @@ public class RulesData : MonoBehaviour
         //--------------------Movement Rules---------------------------
 
         Rule AddMovement1 = new Rule();
-        AddMovement1.LeftHand = new String[] { "Fight" };
+        AddMovement1.LeftHand = "Fight" ;
         AddMovement1.RightHand = new String[]
         {
                 "BasicMovement-fight",
@@ -51,7 +51,7 @@ public class RulesData : MonoBehaviour
         };
 
         Rule AddMovement2 = new Rule();
-        AddMovement2.LeftHand = new String[] { "Key" };
+        AddMovement2.LeftHand =  "Key" ;
         AddMovement2.RightHand = new String[]
         {
                 "BasicMovement-key",
@@ -62,7 +62,7 @@ public class RulesData : MonoBehaviour
         };
 
         Rule AddMovement3 = new Rule();
-        AddMovement3.LeftHand = new String[] { "Lock" };
+        AddMovement3.LeftHand = "Lock" ;
         AddMovement3.RightHand = new String[]
         {
                 "BasicMovement-lock",
@@ -73,7 +73,7 @@ public class RulesData : MonoBehaviour
         };
 
         Rule BasicMovement = new Rule();
-        BasicMovement.LeftHand = new String[] { "BasicMovement" };
+        BasicMovement.LeftHand =  "BasicMovement" ;
         BasicMovement.RightHand = new String[]
         {
 
@@ -82,7 +82,7 @@ public class RulesData : MonoBehaviour
         };
 
         Rule ExtendedMovement = new Rule();
-        ExtendedMovement.LeftHand = new String[] { "ExtendedMovement" };
+        ExtendedMovement.LeftHand = "ExtendedMovement" ;
         ExtendedMovement.RightHand = new String[]
         {
                 "dash",
@@ -90,19 +90,15 @@ public class RulesData : MonoBehaviour
                 "extraJump"
         };
 
-        Rule DoubleJump1 = new Rule();
-        DoubleJump1.LeftHand = new String[] { "jump-extraJump" };
-        DoubleJump1.RightHand = new String[] { "doubleJump" };
-
-        Rule DoubleJump2 = new Rule();
-        DoubleJump2.LeftHand = new String[] { "extraJump-jump" };
-        DoubleJump2.RightHand = new String[] { "doubleJump" };
+        Rule DoubleJump = new Rule();
+        DoubleJump.LeftHand =  "jump-jump" ;
+        DoubleJump.RightHand = new String[] { "doubleJump" };
 
         Rule DoubleDash = new Rule();
-        DoubleDash.LeftHand = new String[] { "dash-dash" };
+        DoubleDash.LeftHand =  "dash-dash" ;
         DoubleDash.RightHand = new String[] { "doubleDash" };
 
 
-        ProductionRules = new Rule[] { Start, AddTask, AddEndTask, AddMovement1, AddMovement2, AddMovement3, BasicMovement, ExtendedMovement, DoubleJump1, DoubleJump2, DoubleDash };
+        ProductionRules = new Rule[] { Start, AddTask, AddEndTask, AddMovement1, AddMovement2, AddMovement3, BasicMovement, ExtendedMovement, DoubleJump, DoubleDash };
     }
 }
