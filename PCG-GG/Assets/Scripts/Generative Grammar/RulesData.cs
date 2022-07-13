@@ -16,8 +16,8 @@ public class RulesData : MonoBehaviour
         Start.LeftHand =  "Start" ;
         Start.RightHand = new String[]
         {
-                //"Entrance-Task-Goal",
-                //"Entrance-Task-Task-Goal",
+                "Entrance-Task-Goal",
+                "Entrance-Task-Task-Goal",
                 "Entrance-Task-Task-Task-Goal"
         };
 
