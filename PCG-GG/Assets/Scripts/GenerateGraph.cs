@@ -30,7 +30,7 @@ public class GenerateGraph : MonoBehaviour
             String[] splitGraph = graph.Split('-');
             for (var i = 0; i < splitGraph.Length; i++)
             {
-                if (pick.LeftHand.Equals(splitGraph[i]))
+                if (pick.LeftHand.Equals(splitGraph[i])) 
                 {
                     if (pick.RightHand.Length > 1)
                     {

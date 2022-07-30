@@ -1,0 +1,18 @@
+{
+  "MovementNodes":{
+    "Start": {
+      "LeftHand": "Start",
+      "RightHand": ["start-BM-EM-land", "start-BM-BM-EM-land", "start-BM-EM-EM-land"]
+    },
+
+    "BM": {
+      "LeftHand": "BM",
+      "RightHand": ["leftJump", "rightJump" ]
+    },
+
+    "EM":{
+      "LeftHand": "EM",
+      "RightHand": ["Dash","Glide","extraJump"]
+    }
+  }
+}

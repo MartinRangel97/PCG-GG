@@ -1,0 +1,16 @@
+{
+  "productionNodes": [
+    {
+      "LeftHand": "Start",
+      "RightHand": ["start-Entrance-Task-Task-Goal", "start-Entrance-Task-Task-Task-Goal", "start-Entrance-Task-Task-Task-Task-Goal"]
+    },
+    {
+      "LeftHand": "Task",
+      "RightHand": ["Fight", "Key-Lock" ]
+    },
+    {
+      "LeftHand": "Goal",
+      "RightHand": ["boss-goal"]
+    }
+  ]
+}
