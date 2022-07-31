@@ -6,7 +6,7 @@
     },
     {
       "LeftHand": "Task",
-      "RightHand": ["Fight", "Key-Lock" ]
+      "RightHand": ["fight", "key-lock" ]
     },
     {
       "LeftHand": "Goal",
