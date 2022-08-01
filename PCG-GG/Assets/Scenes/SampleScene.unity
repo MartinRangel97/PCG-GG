@@ -272,8 +272,11 @@ GameObject:
   - component: {fileID: 978538411}
   - component: {fileID: 978538412}
   - component: {fileID: 978538413}
+<<<<<<< HEAD
   - component: {fileID: 978538410}
   - component: {fileID: 978538409}
+=======
+>>>>>>> GenerativeGrammar
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -616,6 +619,7 @@ Transform:
   m_Father: {fileID: 978538408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &2200454198713880228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -673,3 +677,5 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86e648e9f49e7a3478dbafbf3363787a, type: 3}
+=======
+>>>>>>> GenerativeGrammar
