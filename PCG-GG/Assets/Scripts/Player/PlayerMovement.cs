@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 2f;
     public float gravityScale;
 
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     public int numberOfJumps;
     public float jumpForce;
 
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        inputX = context.ReadValue<Vector2>().x * 4;
+        inputX = context.ReadValue<Vector2>().x * 3;
     }
 
     public void OnDashLeft(InputAction.CallbackContext context)
@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Equals("Floor"))
+        if (collision.gameObject.tag.Equals("Floor"))
         {
             isGrounded = true;
             numberOfJumps = 0;
@@ -156,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
             playerRB.gravityScale = gravityScale;
             glideTimer = 0;
         }
+
         if (collision.gameObject.name.Equals("Wall"))
         {
             inputX = 0;
@@ -164,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Equals("Floor"))
+        if (collision.gameObject.tag.Equals("Floor"))
         {
             numberOfDashes = 0;
         }
@@ -172,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Equals("Floor"))
+        if (collision.gameObject.tag.Equals("Floor"))
         {
             isGrounded = false;
         }

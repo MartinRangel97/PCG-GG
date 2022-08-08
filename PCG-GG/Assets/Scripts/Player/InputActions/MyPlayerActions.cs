@@ -281,7 +281,7 @@ public class @MyPlayerActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""31f4c5ac-a303-487d-8e54-595661ae8d49"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",

@@ -46,8 +46,7 @@ public class GenGra : MonoBehaviour
 
     private System.Random rnd = new System.Random();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         productionPath = File.ReadAllText(Application.streamingAssetsPath + "/ProductionNode.json");
         productionNodeList = JsonUtility.FromJson<ProductionNodeList>(productionPath);
@@ -58,8 +57,22 @@ public class GenGra : MonoBehaviour
         Node Start = new Node("Start", numberOfNodes);
         GraphNodes.Add(Start);
         ExpandNode();
-        
     }
+
+    // Start is called before the first frame update
+    //void Start()
+    //{
+    //    productionPath = File.ReadAllText(Application.streamingAssetsPath + "/ProductionNode.json");
+    //    productionNodeList = JsonUtility.FromJson<ProductionNodeList>(productionPath);
+
+    //    movementPath = File.ReadAllText(Application.streamingAssetsPath + "/MovementNode.json");
+    //    movementNodeList = JsonUtility.FromJson<MovementNodeList>(movementPath);
+
+    //    Node Start = new Node("Start", numberOfNodes);
+    //    GraphNodes.Add(Start);
+    //    ExpandNode();
+        
+    //}
 
     private void ExpandNode()
     {
@@ -154,11 +167,11 @@ public class GenGra : MonoBehaviour
                 }
             }
             GraphNodes = tempGraphNode; // the temp graph replaces the original graph
-            Logging();
+            //Logging();
             ExpandNode();
         } else
         {
-            Logging();
+            //Logging();
         }
     }
 
@@ -202,24 +215,24 @@ public class GenGra : MonoBehaviour
 
     private void AddMovementNode(Node node)
     {
-        if (node.MovementGraph.Equals(""))
+        if (node.MovementGraph.Count.Equals(0))
         {
             switch (node.LeftHand)
             {
                 case "key":
-                    node.MovementGraph = "Start";
+                    node.MovementGraph.Add("Start");
                     ExpandMovementNode(node);
                     break;
                 case "lock":
-                    node.MovementGraph = "Start";
+                    node.MovementGraph.Add("Start");
                     ExpandMovementNode(node);
                     break;
                 case "fight":
-                    node.MovementGraph = "Start";
+                    node.MovementGraph.Add("Start");
                     ExpandMovementNode(node);
                     break;
                 case "boss":
-                    node.MovementGraph = "Start";
+                    node.MovementGraph.Add("Start");
                     ExpandMovementNode(node);
                     break;
             }
@@ -230,65 +243,39 @@ public class GenGra : MonoBehaviour
     {
         
         MovementNode pick = Array.Find(movementNodeList.movementNodes, findNode => node.MovementGraph.Contains(findNode.LeftHand));
-        string tempMovementGraph = "";
+        List<string> tempMovementGraph = new List<string>();
 
         if (pick != null)
         {
-            String[] splitGraph = node.MovementGraph.Split('-');
-            for (var i = 0; i < splitGraph.Length; i++)
+            for (var i = 0; i < node.MovementGraph.Count; i++)
             {
-                if (pick.LeftHand.Equals(splitGraph[i]))
+                if (pick.LeftHand.Equals(node.MovementGraph[i]))
                 {
+                    //Debug.Log("got in here " + node.MovementGraph[i]);
                     if (pick.RightHand.Length > 1)
                     {
                         int r = rnd.Next(0, pick.RightHand.Length);
-                        splitGraph[i] = pick.RightHand[r];
-                        if(i == 0)
+                        String[] splitRightHand = pick.RightHand[r].Split('-');
+                        for(var j = 0; j < splitRightHand.Length; j++)
                         {
-                            tempMovementGraph = pick.RightHand[r];
-                        } 
-                        else
-                        {
-                            tempMovementGraph = tempMovementGraph + "-" + pick.RightHand[r];
+                            tempMovementGraph.Add(splitRightHand[j]);
                         }
-                        
-                        Debug.Log(pick.LeftHand + " -> " + pick.RightHand[r]);
                     }
                     else
                     {
-                        if(i== 0)
-                        {
-                            tempMovementGraph = pick.RightHand[0];
-                        }
-                        else
-                        {
-                            tempMovementGraph = tempMovementGraph + "-" + pick.RightHand[0];
-                        }
-                        Debug.Log(pick.LeftHand + " -> " + pick.RightHand[0]);
+                        tempMovementGraph.Add(pick.RightHand[0]);
                     }
                 }
                 else
                 {
-                    if(i == 0)
-                    {
-                        tempMovementGraph = splitGraph[i];
-                    } else
-                    {
-                        tempMovementGraph = tempMovementGraph + "-" + splitGraph[i];
-                    }
-                    Debug.Log(splitGraph[i]);
+                    tempMovementGraph.Add(node.MovementGraph[i]);
                 }
-
             }
-
-
             node.MovementGraph = tempMovementGraph;
-            Debug.Log(node.MovementGraph);
             ExpandMovementNode(node);
         }
         else
         {
-            Debug.Log("Done");
             Debug.Log(node.MovementGraph);
         }
     }

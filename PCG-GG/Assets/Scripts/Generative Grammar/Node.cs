@@ -12,7 +12,7 @@ public class Node
     public List<Node> PreviousNodes;
     public string LeftHand;
     public int Id;
-    public string MovementGraph;
+    public List<string> MovementGraph;
 
     private System.Random rnd = new System.Random();
     private List<string> TempGraph;
@@ -22,7 +22,7 @@ public class Node
         this.LeftHand = leftHand;
         this.Id = id;
         this.PreviousNodes = new List<Node>();
-        this.MovementGraph = "";
+        this.MovementGraph = new List<string>();
     }
 
     public Node(string leftHand, int id, List<Node> previousNodes )
@@ -30,21 +30,7 @@ public class Node
         this.LeftHand = leftHand;
         this.Id = id;
         this.PreviousNodes = previousNodes;
-        this.MovementGraph = "";
-    }
-
-    private List<string> TempMovementGraph()
-    {
-        List<string> tempGraph = new List<string>();
-
-        string[] splitTempGraph = MovementGraph.Split('-');
-
-        foreach(string str in splitTempGraph)
-        {
-            tempGraph.Add(str);
-        }
-
-        return tempGraph;
+        this.MovementGraph = new List<string>();
     }
 }
 

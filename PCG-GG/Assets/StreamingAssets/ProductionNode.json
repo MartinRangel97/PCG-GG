@@ -2,7 +2,7 @@
   "productionNodes": [
     {
       "LeftHand": "Start",
-      "RightHand": ["start-Entrance-Task-Task-Goal", "start-Entrance-Task-Task-Task-Goal", "start-Entrance-Task-Task-Task-Task-Goal"]
+      "RightHand": ["start-Task-Task-Goal", "start-Task-Task-Task-Goal", "start-Task-Task-Task-Task-Goal"]
     },
     {
       "LeftHand": "Task",
