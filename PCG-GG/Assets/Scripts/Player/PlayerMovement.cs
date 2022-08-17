@@ -42,10 +42,12 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             playerRB.velocity = transform.right * dashDirection * dashForce;
+            playerRB.gravityScale = 0;
             currentDashTimer -= Time.deltaTime;
 
             if(currentDashTimer <= 0)
             {
+                playerRB.gravityScale = 3.5f;
                 isDashing = false;
             }
         } 
@@ -157,10 +159,10 @@ public class PlayerMovement : MonoBehaviour
             glideTimer = 0;
         }
 
-        if (collision.gameObject.name.Equals("Wall"))
-        {
-            inputX = 0;
-        }
+        //if (collision.gameObject.name.Equals("Wall"))
+        //{
+        //    inputX = 0;
+        //}
     }
 
     private void OnCollisionStay2D(Collision2D collision)

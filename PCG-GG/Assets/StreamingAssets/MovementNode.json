@@ -2,32 +2,27 @@
   "movementNodes": [
     {
       "LeftHand": "Start",
-      "RightHand": ["walk-BM-land-Combo", "walk-BM-land-Combo-Combo"]
+      "RightHand": ["walk-Direction-BM-land-Combo", "walk-Direction-BM-land-Combo-Combo"]
     },
     {
       "LeftHand": "Combo",
-      "RightHand": ["BM-land", "BM-EM-land"]
+      "RightHand": ["BM-land", "BM-EM-land", "BM-EM-EM-land"]
     },
     {
       "LeftHand": "BM",
-      "RightHand": ["leftJump", "rightJump", "Jump", "walk" ]
+      "RightHand": ["directionalJump", "jump" ]
     },
     {
       "LeftHand": "EM",
-      "RightHand": ["Dash","extraJump"]
+      "RightHand": ["Dash","Jump"]
     },
     {
-      "LeftHand": "extraJump",
-      "RightHand": ["leftJump", "rightJump" ]
+      "LeftHand": "Jump",
+      "RightHand": ["directionalJump", "jump"]
     },
     {
-      "LeftHand": "Walk",
-      "RightHand": ["leftWalk", "rightWalk" ]
-    },
-    {
-      "LeftHand": "Glide",
-      "RightHand": ["leftGlide", "rightGlide" ]
+      "LeftHand": "Direction",
+      "RightHand": ["left", "right"]
     }
-
   ]
 }

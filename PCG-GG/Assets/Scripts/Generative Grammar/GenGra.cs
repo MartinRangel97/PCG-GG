@@ -59,31 +59,8 @@ public class GenGra : MonoBehaviour
         ExpandNode();
     }
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    productionPath = File.ReadAllText(Application.streamingAssetsPath + "/ProductionNode.json");
-    //    productionNodeList = JsonUtility.FromJson<ProductionNodeList>(productionPath);
-
-    //    movementPath = File.ReadAllText(Application.streamingAssetsPath + "/MovementNode.json");
-    //    movementNodeList = JsonUtility.FromJson<MovementNodeList>(movementPath);
-
-    //    Node Start = new Node("Start", numberOfNodes);
-    //    GraphNodes.Add(Start);
-    //    ExpandNode();
-        
-    //}
-
     private void ExpandNode()
     {
-        //TODO
-        //filter possible production nodes +++++++++++++++
-        //loop though each node +++++++++++++++
-        //check if node matches with production node +++++++++++++++++
-        //if true, create nodes based on the corresponding node +++++++++++++++
-        //establish connection between the new nodes ++++++++++++++++++++++
-        //add previous node to the first node and connecting node to the last node from the node that is being replaced if any
-
 
         //var rnd = new System.Random();
 
@@ -117,13 +94,19 @@ public class GenGra : MonoBehaviour
                                 }
                                 else
                                 {
-                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
+                                    if (splitGraph[j].Equals("backToSplit"))
+                                        tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes - j));
+                                    else 
+                                        tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
                                     AddMovementNode(tempGraphNode.Last());
                                 }
                             } 
                             else
                             {
-                                tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
+                                if (splitGraph[j].Equals("backToSplit"))
+                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes - j));
+                                else
+                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
                                 AddMovementNode(tempGraphNode.Last());
                             }
                            
@@ -235,6 +218,13 @@ public class GenGra : MonoBehaviour
                     node.MovementGraph.Add("Start");
                     ExpandMovementNode(node);
                     break;
+                case "split":
+                    node.MovementGraph.Add("walk");
+                    //node.MovementGraph.Add("Direction");
+                    node.MovementGraph.Add("jump");
+                    node.MovementGraph.Add("land");
+                    ExpandMovementNode(node);
+                    break;
             }
         }
     }
@@ -276,7 +266,7 @@ public class GenGra : MonoBehaviour
         }
         else
         {
-            Debug.Log(node.MovementGraph);
+            //Debug.Log(node.MovementGraph);
         }
     }
 }

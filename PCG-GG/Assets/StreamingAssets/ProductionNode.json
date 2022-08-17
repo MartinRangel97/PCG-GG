@@ -2,15 +2,19 @@
   "productionNodes": [
     {
       "LeftHand": "Start",
-      "RightHand": ["start-Task-Task-Goal", "start-Task-Task-Task-Goal", "start-Task-Task-Task-Task-Goal"]
+      "RightHand": [ "start-Task-Task-Goal", "start-Task-Task-Task-Goal", "start-Task-Task-Task-Task-Goal"]
     },
     {
       "LeftHand": "Task",
-      "RightHand": ["fight", "key-lock" ]
+      "RightHand": ["fight", "Key Lock" ]
     },
     {
       "LeftHand": "Goal",
       "RightHand": ["boss-goal"]
+    },
+    {
+      "LeftHand": "Key Lock",
+      "RightHand": ["split-key-backToSplit-lock", "key-lock" ]
     }
   ]
 }
