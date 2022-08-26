@@ -43,8 +43,8 @@ public class GenGra : MonoBehaviour
     public MovementNodeList movementNodeList = new MovementNodeList();
 
     private int numberOfNodes = 1;
-
     private System.Random rnd = new System.Random();
+    private string graph;
 
     private void Awake()
     {
@@ -64,97 +64,126 @@ public class GenGra : MonoBehaviour
 
         //var rnd = new System.Random();
 
-        List<string> tempStringGraph = TempGraph();
+        //List<string> tempStringGraph = TempGraph();
+        string tempStringGraph = NewTempGraph();
+        //Debug.Log(NewTempGraph());
 
         List<Node> tempGraphNode = new List<Node>();
 
-        ProductionNode pick = Array.Find(productionNodeList.productionNodes, findNode => tempStringGraph.Contains(findNode.LeftHand)); 
+        ProductionNode pick = Array.Find(productionNodeList.productionNodes, findNode => tempStringGraph.Contains(findNode.LeftHand));
         //got the possible production nodes
 
         if (pick != null)
         {
-            for(var i = 0; i < GraphNodes.Count; i++)
+            if (pick.RightHand.Length > 1)
             {
-                if (pick.LeftHand.Equals(GraphNodes[i].LeftHand)) 
-                {
-                    if (pick.RightHand.Length > 1)
-                    {
-                        int r = rnd.Next(0, pick.RightHand.Length);
-                        String[] splitGraph = pick.RightHand[r].Split('-');
-                        for (var j = 0; j < splitGraph.Length; j++)
-                        {
-                            numberOfNodes++;
+                int r = rnd.Next(pick.RightHand.Length);
+                //graph = tempStringGraph.Replace(pick.LeftHand, pick.RightHand[r]);
+                PlotNodes(pick.LeftHand, pick.RightHand[r]);
+                ExpandNode();
+            }
+            else
+            {
+                //graph = tempStringGraph.Replace(pick.LeftHand, pick.RightHand[0]);
+                PlotNodes(pick.LeftHand, pick.RightHand[0]);
+                ExpandNode();
+            }
+        }
+        else
+        {
+            //Debug.Log(graph);
+        }
+    }
 
-                            if (splitGraph.Length > 2)
-                            {
-                                if (j == 0) // at the start of the loop, inherit the previous nodes of the orignal node
-                                {
-                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes, GraphNodes[i].PreviousNodes));
-                                    AddMovementNode(tempGraphNode.Last());
-                                }
-                                else
-                                {
-                                    if (splitGraph[j].Equals("backToSplit"))
-                                        tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes - j));
-                                    else 
-                                        tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
-                                    AddMovementNode(tempGraphNode.Last());
-                                }
-                            } 
-                            else
-                            {
-                                if (splitGraph[j].Equals("backToSplit"))
-                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes - j));
-                                else
-                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
-                                AddMovementNode(tempGraphNode.Last());
-                            }
-                           
-                        }
-                        tempGraphNode = ConnectNodes(tempGraphNode, splitGraph.Length, i);
-                    }
+    private void PlotNodes(string pickLeftHand, string pickRightHand)
+    {
+        string[] splitPickLeftHand = pickLeftHand.Split('-');
+        string[] splitPickRightHand = pickRightHand.Split('-');
+        bool leftHandMatched = false;
+        int splitNodeId = numberOfNodes;
+
+        for (var i = 0; i < GraphNodes.Count; i++)
+        {
+            if(splitPickLeftHand.Length > 1)
+            {
+
+                for(var j = 0; j < splitPickLeftHand.Length; j++) //Checks if the lefthand matches
+                {
+                    if(GraphNodes[i + j].LeftHand.Equals(splitPickLeftHand[j]))
+                        leftHandMatched = true;
                     else
                     {
-                        String[] splitGraph = pick.RightHand[0].Split('-');
-                        for (var j = 0; j < splitGraph.Length; j++)
-                        {
-                            numberOfNodes++;
-                            if(splitGraph.Length > 2)
-                            {
-                                if (j == 0) // at the start of the loop, inherit the previous nodes of the orignal node
-                                {
-                                    Debug.Log(splitGraph[j] + " : " + j.ToString());
-                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes, GraphNodes[i].PreviousNodes));
-                                    AddMovementNode(tempGraphNode.Last());
-                                }
-                                else
-                                {
-                                    tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
-                                    AddMovementNode(tempGraphNode.Last());
-                                }
-                            } 
-                            else 
-                            {
-                                tempGraphNode.Add(new Node(splitGraph[j], numberOfNodes));
-                                AddMovementNode(tempGraphNode.Last());
-                            }
-                            
-                        }
-                        tempGraphNode = ConnectNodes(tempGraphNode, splitGraph.Length, i);
-                    }               
+                        leftHandMatched = false;
+                        break;
+                    }              
                 }
-                else
+
+                if (leftHandMatched)
                 {
-                    tempGraphNode.Add(new Node(GraphNodes[i].LeftHand, GraphNodes[i].Id, GraphNodes[i].PreviousNodes)); // Remake the node in the temp graph
-                    AddMovementNode(tempGraphNode.Last());
+                    for(var j = 1; j < splitPickLeftHand.Length; j++) // will delete 
+                        GraphNodes.RemoveAt(i + j);
+
+                    for (var k = 0; k < splitPickRightHand.Length; k++) //reverse for loop
+                    {
+                        numberOfNodes++;
+                        if (splitPickRightHand[k].Equals("split"))
+                            splitNodeId = numberOfNodes;
+
+                        if (k == 0)
+                        {
+                            if (splitPickRightHand[k].Equals("backToSplit"))
+                            {
+                                Debug.Log(numberOfNodes);
+                                GraphNodes.Insert(i + 1 + k, new Node(splitPickRightHand[k], splitNodeId, GraphNodes[i].PreviousNodes));
+                            }
+                            else 
+                                GraphNodes.Insert(i + 1 + k, new Node(splitPickRightHand[k], numberOfNodes, GraphNodes[i].PreviousNodes));
+                            AddMovementNode(GraphNodes[i + 1]);
+                        }
+                        else
+                        {
+                            if(splitPickRightHand[k].Equals("backToSplit"))
+                                GraphNodes.Insert(i + 1 + k, new Node(splitPickRightHand[k], splitNodeId)   );
+                            else
+                                GraphNodes.Insert(i + 1 + k, new Node(splitPickRightHand[k], numberOfNodes));
+                            AddMovementNode(GraphNodes[i + 1 + k]);
+                        }
+                    }
+                    GraphNodes.RemoveAt(i);
+                    i = GraphNodes.Count; //force ends for loop
                 }
             }
-            GraphNodes = tempGraphNode; // the temp graph replaces the original graph
-            //Logging();
-            ExpandNode();
-        } else
-        {
-            //Logging();
+            else
+            {
+                if (GraphNodes[i].LeftHand.Equals(pickLeftHand))
+                {
+                    for (var j = 0; j < splitPickRightHand.Length; j++)
+                    {
+                        numberOfNodes++;
+                        if (splitPickRightHand[j].Equals("split"))
+                            splitNodeId = numberOfNodes;
+
+                        if (j == 0)
+                        {
+                            if (splitPickRightHand[j].Equals("backToSplit"))
+                                GraphNodes.Insert(i + 1 + j, new Node(splitPickRightHand[j], splitNodeId, GraphNodes[i].PreviousNodes));
+                            else
+                                GraphNodes.Insert(i + 1 + j, new Node(splitPickRightHand[j], numberOfNodes, GraphNodes[i].PreviousNodes));
+                            AddMovementNode(GraphNodes[i + 1]);
+                        }
+                        else
+                        {
+                            if (splitPickRightHand[j].Equals("backToSplit"))
+                                GraphNodes.Insert(i + 1 + j, new Node(splitPickRightHand[j], splitNodeId));
+                            else
+                                GraphNodes.Insert(i + 1 + j, new Node(splitPickRightHand[j], numberOfNodes));
+                            AddMovementNode(GraphNodes[i + 1 + j]);
+                        }
+                    }
+                    GraphNodes.RemoveAt(i);
+                    i = GraphNodes.Count; //force ends for loop
+                }
+            }
         }
     }
 
@@ -175,6 +204,16 @@ public class GenGra : MonoBehaviour
         foreach(Node node in GraphNodes)
         {
             tempGraph.Add(node.LeftHand);
+        }
+        return tempGraph;
+    }
+
+    private string NewTempGraph()
+    {
+        string tempGraph = "";
+        foreach (Node node in GraphNodes)
+        {
+            tempGraph += node.LeftHand + "-";
         }
         return tempGraph;
     }
@@ -219,8 +258,9 @@ public class GenGra : MonoBehaviour
                     ExpandMovementNode(node);
                     break;
                 case "split":
-                    node.MovementGraph.Add("walk");
-                    //node.MovementGraph.Add("Direction");
+                    node.MovementGraph.Add("tunnel");
+                    node.MovementGraph.Add("jump");
+                    node.MovementGraph.Add("tunnel");
                     node.MovementGraph.Add("jump");
                     node.MovementGraph.Add("land");
                     ExpandMovementNode(node);

@@ -10,11 +10,11 @@
     },
     {
       "LeftHand": "BM",
-      "RightHand": ["directionalJump", "jump" ]
+      "RightHand": ["directionalJump", "jump"]
     },
     {
       "LeftHand": "EM",
-      "RightHand": ["Dash","Jump"]
+      "RightHand": ["Dash","jump", "Glide"]
     },
     {
       "LeftHand": "Jump",
@@ -22,7 +22,7 @@
     },
     {
       "LeftHand": "Direction",
-      "RightHand": ["left", "right"]
+      "RightHand": ["left", "right", "same"]
     }
   ]
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3138143334034280849}
   m_Layer: 0
   m_Name: Entrance (1)
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8174530189450041327}
   - component: {fileID: 8174530189450041313}
-  - component: {fileID: 8174530189450041312}
+  - component: {fileID: 1258897278450752340}
   m_Layer: 0
   m_Name: Entrance
   m_TagString: Floor
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8174530189450041312
+--- !u!61 &1258897278450752340
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8174530189805990252}
   - component: {fileID: 8174530189805990254}
-  - component: {fileID: 8174530189805990253}
+  - component: {fileID: 166591671903037707}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Floor
@@ -301,7 +301,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8174530189805990253
+--- !u!61 &166591671903037707
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 8174530190345029402}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,8 +353,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174530190345029400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 6.75, z: 0}
-  m_LocalScale: {x: 1, y: 5, z: 1}
+  m_LocalPosition: {x: -12, y: 5.875, z: 0}
+  m_LocalScale: {x: 1, y: 3.25, z: 1}
   m_Children: []
   m_Father: {fileID: 8174530191218776469}
   m_RootOrder: 3
@@ -462,7 +462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174530190374022901}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9, z: 0}
+  m_LocalPosition: {x: 0, y: 7.25, z: 0}
   m_LocalScale: {x: 23, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8174530191218776469}
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 8174530190620430342}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,8 +571,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174530190620430340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: 6.75, z: 0}
-  m_LocalScale: {x: 1, y: 5, z: 1}
+  m_LocalPosition: {x: 12, y: 5.875, z: 0}
+  m_LocalScale: {x: 1, y: 3.25, z: 1}
   m_Children: []
   m_Father: {fileID: 8174530191218776469}
   m_RootOrder: 4
@@ -664,7 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8174530190653474037}
   - component: {fileID: 8174530190653474039}
-  - component: {fileID: 8174530190653474038}
+  - component: {fileID: 4370369908067315758}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
@@ -737,7 +737,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8174530190653474038
+--- !u!61 &4370369908067315758
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 5206265172939446785}
   m_Layer: 0
   m_Name: Exit (1)
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

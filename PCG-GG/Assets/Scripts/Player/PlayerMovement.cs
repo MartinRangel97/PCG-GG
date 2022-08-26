@@ -76,9 +76,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRB.gravityScale = gravityScale;
             }
-        }
-        
-        
+        }  
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -158,11 +156,15 @@ public class PlayerMovement : MonoBehaviour
             playerRB.gravityScale = gravityScale;
             glideTimer = 0;
         }
+    }
 
-        //if (collision.gameObject.name.Equals("Wall"))
-        //{
-        //    inputX = 0;
-        //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.name);
+        if (collision.gameObject.name.Equals("GoBackToSplit"))
+        {
+            gameObject.transform.position = collision.transform.parent.parent.gameObject.GetComponent<BackToSplit>().splitPosition;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
