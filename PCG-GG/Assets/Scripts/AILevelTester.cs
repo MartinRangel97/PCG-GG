@@ -61,7 +61,7 @@ public class AILevelTester : MonoBehaviour
                 NextMove();
                 break;
             case "walk":
-                movementDuration = 3.05f;
+                movementDuration = 3f;
 
                 if (direction.Equals("left"))
                 {
@@ -91,7 +91,7 @@ public class AILevelTester : MonoBehaviour
                 }
                 break;
             case "tunnel":
-                movementDuration = 3.15f;
+                movementDuration = 3f;
                 if (direction.Equals("left"))
                 {
                     if (moveTime < movementDuration)
@@ -144,6 +144,8 @@ public class AILevelTester : MonoBehaviour
                     movementDuration = 0.7f;
                 else
                     movementDuration = 0.825f;
+
+                simulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
 
                 if (direction.Equals("left"))
                 {
@@ -247,7 +249,7 @@ public class AILevelTester : MonoBehaviour
                 }
                 break;
             case "Glide":
-                movementDuration = 1.1f;
+                movementDuration = 1f;
 
                 if (direction.Equals("left"))
                 {
@@ -399,7 +401,44 @@ public class AILevelTester : MonoBehaviour
                 NextMove();
                 break;
             case "backToSplit":
-                movementDuration = 0.6f;
+                movementDuration = 0.65f;
+                if (direction.Equals("left"))
+                {
+                    if (moveTime < movementDuration)
+                    {
+                        simulator.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                        simulator.Keyboard.KeyDown(VirtualKeyCode.VK_A);
+                    }
+                    else
+                    {
+                        simulator.Keyboard.KeyUp(VirtualKeyCode.VK_A);
+                        if (direction.Equals("left"))
+                            direction = "right";
+                        else if (direction.Equals("right"))
+                            direction = "left";
+                        NextMove();
+                    }
+                }
+                else
+                {
+                    if (moveTime < movementDuration)
+                    {
+                        simulator.Keyboard.KeyPress(VirtualKeyCode.VK_D);
+                        simulator.Keyboard.KeyDown(VirtualKeyCode.VK_D);
+                    }
+                    else
+                    {
+                        simulator.Keyboard.KeyUp(VirtualKeyCode.VK_D);
+                        if (direction.Equals("left"))
+                            direction = "right";
+                        else if (direction.Equals("right"))
+                            direction = "left";
+                        NextMove();
+                    }
+                }
+                break;
+            case "goal":
+                movementDuration = 1.66f;
                 if (direction.Equals("left"))
                 {
                     if (moveTime < movementDuration)

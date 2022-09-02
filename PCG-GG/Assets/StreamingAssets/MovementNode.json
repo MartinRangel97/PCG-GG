@@ -14,7 +14,7 @@
     },
     {
       "LeftHand": "EM",
-      "RightHand": ["Dash","jump", "Glide"]
+      "RightHand": ["Dash", "Jump", "Glide"]
     },
     {
       "LeftHand": "Jump",

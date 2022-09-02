@@ -47,6 +47,8 @@ public class LevelGeneration : MonoBehaviour
     public GameObject HorizontalJumpRightWalls2;
     public GameObject LeftJumpWall;
     public GameObject RightJumpWall;
+    public GameObject LeftJumpWall2;
+    public GameObject RightJumpWall2;
     public GameObject AerialLeftJumpWall;
     public GameObject AerialRightJumpWall;
     public GameObject AerialLeftJumpWall2;
@@ -587,7 +589,7 @@ public class LevelGeneration : MonoBehaviour
                 {
                     if (previousDirection.Equals("left"))
                     {
-                        Instantiate(LeftJumpWall, currentPosition, Quaternion.identity, parent.transform);
+                        Instantiate(LeftJumpWall2, currentPosition, Quaternion.identity, parent.transform);
                         Instantiate(AerialLeftJumpWall, currentPosition, Quaternion.identity, parent.transform);
                     }
                     else
@@ -597,7 +599,7 @@ public class LevelGeneration : MonoBehaviour
                 {
                     if (previousDirection.Equals("right"))
                     {
-                        Instantiate(RightJumpWall, currentPosition, Quaternion.identity, parent.transform);
+                        Instantiate(RightJumpWall2, currentPosition, Quaternion.identity, parent.transform);
                         Instantiate(AerialRightJumpWall, currentPosition, Quaternion.identity, parent.transform);
                     }
                     else

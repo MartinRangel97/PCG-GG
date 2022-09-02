@@ -42,9 +42,15 @@ public class GenGra : MonoBehaviour
 
     public MovementNodeList movementNodeList = new MovementNodeList();
 
+    public GameObject Player;
+
     private int numberOfNodes = 1;
     private System.Random rnd = new System.Random();
     private string graph;
+
+    private int jumps;
+    private int dashes;
+    private int glides;
 
     private void Awake()
     {
@@ -281,7 +287,6 @@ public class GenGra : MonoBehaviour
             {
                 if (pick.LeftHand.Equals(node.MovementGraph[i]))
                 {
-                    //Debug.Log("got in here " + node.MovementGraph[i]);
                     if (pick.RightHand.Length > 1)
                     {
                         int r = rnd.Next(0, pick.RightHand.Length);
@@ -301,13 +306,50 @@ public class GenGra : MonoBehaviour
                     tempMovementGraph.Add(node.MovementGraph[i]);
                 }
             }
-            node.MovementGraph = tempMovementGraph;
+            node.MovementGraph = checkMovementGraph(tempMovementGraph);
             ExpandMovementNode(node);
         }
         else
         {
             //Debug.Log(node.MovementGraph);
         }
+    }
+
+    private List<string> checkMovementGraph(List<string> graph)
+    {
+        for(var i = 0; i < graph.Count; i++)
+        {
+            switch (graph[i])
+            {
+                case "jump":
+                    jumps++;
+                    if (jumps > Player.GetComponent<PlayerStats>().Jumps)
+                        graph[i] = "EM";
+                    break;
+                case "directionalJump":
+                    jumps++;
+                    if (jumps > Player.GetComponent<PlayerStats>().Jumps)
+                        graph[i] = "EM";
+                    break;
+                case "Dash":
+                    dashes++;
+                    if (dashes > Player.GetComponent<PlayerStats>().Dashes)
+                        graph[i] = "EM";
+                    break;
+                case "Glide":
+                    glides++;
+                    if (glides > Player.GetComponent<PlayerStats>().Glide)
+                        graph[i] = "EM";
+                    break;
+                case "land":
+                    jumps = 0;
+                    dashes = 0;
+                    glides = 0;
+                    break;
+            }
+        }
+
+        return graph;
     }
 }
 
