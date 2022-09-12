@@ -26,6 +26,8 @@ public class LevelGeneration : MonoBehaviour
     public GameObject WalkRight4;
     public GameObject WalkLeft5;
     public GameObject WalkRight5;
+    public GameObject WalkLeft6;
+    public GameObject WalkRight6;
 
     [Header("Dash")]
     public GameObject LeftDashToLand;
@@ -38,6 +40,8 @@ public class LevelGeneration : MonoBehaviour
     public GameObject HJumpToRightDash;
     public GameObject VJumpToLeftDash;
     public GameObject VJumpToRightDash;
+    public GameObject LeftWalkToDash;
+    public GameObject RightWalkToDash;
 
     [Header("Jump")]
     public GameObject HorizontalJumpWalls;
@@ -100,12 +104,12 @@ public class LevelGeneration : MonoBehaviour
                     if (direction.Equals("left"))
                     {
                         Instantiate(FightRoom, currentPosition + new Vector3(-23.5f, 0, 0), Quaternion.identity, fightSection.transform);
-                        currentPosition += new Vector3(-44, 0, 0);
+                        currentPosition += new Vector3(-45, 0, 0);
                     }
                     else if (direction.Equals("right"))
                     {
                         Instantiate(FightRoom, currentPosition + new Vector3(23.5f, 0, 0), Quaternion.identity, fightSection.transform);
-                        currentPosition += new Vector3(44, 0, 0);
+                        currentPosition += new Vector3(45, 0, 0);
                     }
                     //fightSection.GetComponent<Section>().GenerateSectionWalls(direction, previousDirection);
                     break;
@@ -175,12 +179,12 @@ public class LevelGeneration : MonoBehaviour
                             currentPosition = child.Find("Split(Clone)").position;
                             backToSplitSection.GetComponent<BackToSplit>().splitPosition = currentPosition;
 
-                            previousDirection = direction;
+                            //previousDirection = direction;
                             direction = child.Find("Split(Clone)").GetComponent<Split>().SecondPathDirection;
+                            previousDirection = direction;
 
-                            
 
-                            if(GraphNodes[i + 1].MovementGraph.Count > 0)
+                            if (GraphNodes[i + 1].MovementGraph.Count > 0)
                             {
                                 if (GraphNodes[i + 1].MovementGraph[1].Equals("left"))
                                 {
@@ -281,10 +285,12 @@ public class LevelGeneration : MonoBehaviour
                     break;
                 case "Dash":
                     GenerateDashObstacle(i, graph, section);
+                    Instantiate(Objective, currentPosition, Quaternion.identity, section.transform);
                     previousNode = "Dash";
                     break;
                 case "Glide":
                     GenerateGlideObstacle(i, graph, section);
+                    Instantiate(Objective, currentPosition, Quaternion.identity, section.transform);
                     previousNode = "Glide";
                     break;
                 case "walk":
@@ -635,7 +641,18 @@ public class LevelGeneration : MonoBehaviour
                 Instantiate(VJumpToRightDash, currentPosition, Quaternion.identity, parent.transform);
             }
         }
-        else if (graph[index - 1].Equals("land") || graph[index - 1].Equals("walk") || graph[index - 1].Equals("Dash") || graph[index - 1].Equals("Glide"))
+        else if (graph[index - 1].Equals("walk"))
+        {
+            if (direction.Equals("left"))
+            {
+                Instantiate(LeftWalkToDash, currentPosition, Quaternion.identity, parent.transform);
+            }
+            else if (direction.Equals("right"))
+            {
+                Instantiate(RightWalkToDash, currentPosition, Quaternion.identity, parent.transform);
+            }
+        }
+        else if (graph[index - 1].Equals("land")  || graph[index - 1].Equals("Dash") || graph[index - 1].Equals("Glide"))
         {
             if (direction.Equals("left"))
             {
@@ -646,6 +663,7 @@ public class LevelGeneration : MonoBehaviour
                 Instantiate(RightDashToLand, currentPosition, Quaternion.identity, parent.transform);
             }
         }
+        
 
         if (direction.Equals("left"))
         {
@@ -760,8 +778,14 @@ public class LevelGeneration : MonoBehaviour
                 case "walk":
                     Instantiate(WalkLeft, currentPosition, Quaternion.identity, parent.transform);
                     break;
-                default:
+                case "land":
+                    Instantiate(WalkLeft6, currentPosition, Quaternion.identity, parent.transform);
+                    break;
+                case "Dash":
                     Instantiate(WalkLeft, currentPosition, Quaternion.identity, parent.transform);
+                    break;
+                default:
+                    Instantiate(WalkLeft2, currentPosition, Quaternion.identity, parent.transform);
                     break;
             }
 
@@ -819,8 +843,14 @@ public class LevelGeneration : MonoBehaviour
                 case "walk":
                     Instantiate(WalkRight, currentPosition, Quaternion.identity, parent.transform);
                     break;
-                default:
+                case "land":
+                    Instantiate(WalkRight6, currentPosition, Quaternion.identity, parent.transform);
+                    break;
+                case "Dash":
                     Instantiate(WalkRight, currentPosition, Quaternion.identity, parent.transform);
+                    break;
+                default:
+                    Instantiate(WalkRight2, currentPosition, Quaternion.identity, parent.transform);
                     break;
             }
             currentPosition += walkDistanceRight;

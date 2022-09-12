@@ -2,15 +2,15 @@
   "movementNodes": [
     {
       "LeftHand": "Start",
-      "RightHand": ["walk-Direction-BM-land-Combo", "walk-Direction-BM-land-Combo-Combo"]
+      "RightHand": ["walk-Combo", "walk-Combo-Combo"]
     },
     {
       "LeftHand": "Combo",
-      "RightHand": ["BM-land", "BM-EM-land", "BM-EM-EM-land"]
+      "RightHand": ["BM-land", "BM-EM-land", "BM-EM-EM-land", "BM-EM-EM-EM-land"]
     },
     {
       "LeftHand": "BM",
-      "RightHand": ["directionalJump", "jump"]
+      "RightHand": ["Jump"]
     },
     {
       "LeftHand": "EM",

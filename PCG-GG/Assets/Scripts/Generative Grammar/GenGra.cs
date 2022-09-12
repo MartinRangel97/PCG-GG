@@ -293,7 +293,15 @@ public class GenGra : MonoBehaviour
                         String[] splitRightHand = pick.RightHand[r].Split('-');
                         for(var j = 0; j < splitRightHand.Length; j++)
                         {
-                            tempMovementGraph.Add(splitRightHand[j]);
+                            if (splitRightHand[j].Equals("Glide"))
+                            {
+                                if (tempMovementGraph.LastOrDefault() != "walk")
+                                {
+                                    tempMovementGraph.Add(splitRightHand[j]);
+                                }
+                            }
+                            else
+                                tempMovementGraph.Add(splitRightHand[j]);
                         }
                     }
                     else

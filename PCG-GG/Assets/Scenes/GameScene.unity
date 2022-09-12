@@ -261,6 +261,8 @@ MonoBehaviour:
   WalkRight4: {fileID: 1090829321432377466, guid: 1ab148e1a18f3554fae275c311655b59, type: 3}
   WalkLeft5: {fileID: 2962572851504269168, guid: 6ac854880726f484ebc5b1b93381c91e, type: 3}
   WalkRight5: {fileID: 6085471504703003491, guid: 521203702b0126d47a1ef9fd828ee7f1, type: 3}
+  WalkLeft6: {fileID: 1814066791573135576, guid: fbd217736b390264b83ea71da118e3e6, type: 3}
+  WalkRight6: {fileID: 8275199686197278562, guid: 631aa783f387bf04c8d499fedf0eef7e, type: 3}
   LeftDashToLand: {fileID: 6560147827991523293, guid: 2dffce3c7165e634882a6b410b665f8d, type: 3}
   RightDashToLand: {fileID: 7298970459522946879, guid: ee9c35a28ebafac4187ed8e4596fccc2, type: 3}
   LeftDashToDash: {fileID: 3419363130046836955, guid: 10e8e1bddf0e99e4e8b8a8554c4e2516, type: 3}
@@ -271,6 +273,8 @@ MonoBehaviour:
   HJumpToRightDash: {fileID: 6002391128471787098, guid: dbab7c05522832343bc85fe2b78e0484, type: 3}
   VJumpToLeftDash: {fileID: 1580366953341387829, guid: 07d4a61096741ac4fa0d0a4c3f025e4d, type: 3}
   VJumpToRightDash: {fileID: 7041749368278766797, guid: 0e35f64f1a47290429c1913f01107c28, type: 3}
+  LeftWalkToDash: {fileID: 4461155027158398213, guid: 72a162e229a671b42a229a44ec2bcd34, type: 3}
+  RightWalkToDash: {fileID: 7598258830437377558, guid: 68e2663ef9c10424abac3c81eb253bda, type: 3}
   HorizontalJumpWalls: {fileID: 8325464918575541343, guid: 6d6b9398394b7754c9edcb779a5f17d2, type: 3}
   HorizontalJumpLeftWalls: {fileID: 2865555203642002998, guid: bd6b15f08d3e3e6408ac8756bc623fb6, type: 3}
   HorizontalJumpRightWalls: {fileID: 3551358348775800853, guid: 9c21851c085026342befcfe12254ef44, type: 3}
@@ -325,15 +329,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4352698947170694592, guid: 93f026d47e08c6c419d10605b390c3e9, type: 3}
       propertyPath: glideTimer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4352698947170694592, guid: 93f026d47e08c6c419d10605b390c3e9, type: 3}
       propertyPath: numberOfJumps
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4352698947170694592, guid: 93f026d47e08c6c419d10605b390c3e9, type: 3}
       propertyPath: numberOfDashes
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4352698947170694593, guid: 93f026d47e08c6c419d10605b390c3e9, type: 3}
       propertyPath: m_RootOrder
