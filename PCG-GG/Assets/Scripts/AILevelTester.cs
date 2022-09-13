@@ -41,8 +41,12 @@ public class AILevelTester : MonoBehaviour
         //graph.Add("land");
         //graph.Add("land");
         //graph.Add("jump");
+        //graph.Add("Dash");
+        //graph.Add("resetJump");
         //graph.Add("Glide");
-        //graph.Add("Glide");
+        //graph.Add("jump");
+        //graph.Add("jump");
+        //graph.Add("jump");
     }
 
     private void FixedUpdate()
@@ -61,7 +65,7 @@ public class AILevelTester : MonoBehaviour
                 NextMove();
                 break;
             case "walk":
-                movementDuration = 3f;
+                movementDuration = 1f;
 
                 if (direction.Equals("left"))
                 {
@@ -120,6 +124,7 @@ public class AILevelTester : MonoBehaviour
                 }
                 break;
             case "jump":
+                
                 movementDuration = 0.5f;
                 if (moveTime < movementDuration)
                 {
@@ -128,12 +133,17 @@ public class AILevelTester : MonoBehaviour
                         jumped = true;
                         if (graph[graphIndex + 1].Equals("Glide"))
                         {
+                            Debug.Log("Jump to Glide");
                             simulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
                             simulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
                         }
                         else
+                        {
+                            Debug.Log("Normal Jump");
+                            //simulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
                             simulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
-                        jumped = true;
+
+                        }
                     }
                 }  
                 else
@@ -144,8 +154,6 @@ public class AILevelTester : MonoBehaviour
                     movementDuration = 0.7f;
                 else
                     movementDuration = 0.825f;
-
-                simulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
 
                 if (direction.Equals("left"))
                 {
@@ -197,7 +205,7 @@ public class AILevelTester : MonoBehaviour
                 }
                 break;
             case "Dash":
-                movementDuration = 0.9f;
+                movementDuration = 0.55f;
 
                 if (direction.Equals("left"))
                 {
@@ -211,14 +219,11 @@ public class AILevelTester : MonoBehaviour
 
                         if (graph[graphIndex + 1].Equals("Glide") && jumped == false)
                         {
-                            simulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
+                            //simulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
                             simulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
                             jumped = true;
                         }
-                        else
-                        {
-                            simulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
-                        }
+
                     }
                     else
                         NextMove();
@@ -235,13 +240,9 @@ public class AILevelTester : MonoBehaviour
 
                         if (graph[graphIndex + 1].Equals("Glide") && jumped == false)
                         {
-                            simulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
+                            //simulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
                             simulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
                             jumped = true;
-                        }
-                        else
-                        {
-                            simulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
                         }
                     }
                     else
@@ -250,7 +251,6 @@ public class AILevelTester : MonoBehaviour
                 break;
             case "Glide":
                 movementDuration = 1f;
-
                 if (direction.Equals("left"))
                 {
                     if (moveTime < movementDuration)
@@ -266,7 +266,10 @@ public class AILevelTester : MonoBehaviour
                     {
                         simulator.Keyboard.KeyUp(VirtualKeyCode.VK_A);
                         if(graph[graphIndex + 1] != "Glide")
+                        {
+                            gameObject.GetComponent<PlayerMovement>().numberOfJumps--;
                             simulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
+                        }
                         NextMove();
                     }
                 } 
@@ -285,7 +288,10 @@ public class AILevelTester : MonoBehaviour
                     {
                         simulator.Keyboard.KeyUp(VirtualKeyCode.VK_D);
                         if (graph[graphIndex + 1] != "Glide")
+                        {
+                            gameObject.GetComponent<PlayerMovement>().numberOfJumps--;
                             simulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
+                        }
                         NextMove();
                     }
                 }
@@ -438,7 +444,7 @@ public class AILevelTester : MonoBehaviour
                 }
                 break;
             case "goal":
-                movementDuration = 1.66f;
+                movementDuration = 2f;
                 if (direction.Equals("left"))
                 {
                     if (moveTime < movementDuration)

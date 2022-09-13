@@ -8,7 +8,8 @@ public class Objective : MonoBehaviour
     {
         if (collision.transform.name.Equals("Player"))
         {
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<PlayerMovement>().numberOfJumps--;
+            gameObject.SetActive(false);
         }
     }
 }

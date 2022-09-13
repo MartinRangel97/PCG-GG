@@ -52,6 +52,8 @@ public class GenGra : MonoBehaviour
     private int dashes;
     private int glides;
 
+    public string movementGraph;
+
     private void Awake()
     {
         productionPath = File.ReadAllText(Application.streamingAssetsPath + "/ProductionNode.json");
@@ -67,12 +69,7 @@ public class GenGra : MonoBehaviour
 
     private void ExpandNode()
     {
-
-        //var rnd = new System.Random();
-
-        //List<string> tempStringGraph = TempGraph();
         string tempStringGraph = NewTempGraph();
-        //Debug.Log(NewTempGraph());
 
         List<Node> tempGraphNode = new List<Node>();
 
@@ -84,13 +81,11 @@ public class GenGra : MonoBehaviour
             if (pick.RightHand.Length > 1)
             {
                 int r = rnd.Next(pick.RightHand.Length);
-                //graph = tempStringGraph.Replace(pick.LeftHand, pick.RightHand[r]);
                 PlotNodes(pick.LeftHand, pick.RightHand[r]);
                 ExpandNode();
             }
             else
             {
-                //graph = tempStringGraph.Replace(pick.LeftHand, pick.RightHand[0]);
                 PlotNodes(pick.LeftHand, pick.RightHand[0]);
                 ExpandNode();
             }
@@ -193,27 +188,6 @@ public class GenGra : MonoBehaviour
         }
     }
 
-    private void Logging()
-    {
-        string logged = "";
-        foreach (Node node in GraphNodes)
-        {
-            logged = logged + "-" + node.LeftHand;
-        }
-        Debug.Log(logged);
-    }
-
-    private List<string> TempGraph()
-    {
-        List<string> tempGraph = new List<string>();
-
-        foreach(Node node in GraphNodes)
-        {
-            tempGraph.Add(node.LeftHand);
-        }
-        return tempGraph;
-    }
-
     private string NewTempGraph()
     {
         string tempGraph = "";
@@ -224,43 +198,32 @@ public class GenGra : MonoBehaviour
         return tempGraph;
     }
 
-    private List<Node> ConnectNodes(List<Node> tempGraphNode, int amountOfNodes, int insertIndex )
-    {
-        for(var i = insertIndex; i < amountOfNodes + insertIndex; i++)
-        {
-            //Connect previous nodes
-            if(i - 1 >= 0) //Validity check
-            {
-                if(!tempGraphNode[i].PreviousNodes.Any(node => node.Id.Equals(tempGraphNode[i].Id) || node.Id.Equals(node.Id)))
-                {
-                    tempGraphNode[i].PreviousNodes.Add(tempGraphNode[i - 1]);
-                }
-            }
-        }
-        return tempGraphNode;
-    }
-
-
     private void AddMovementNode(Node node)
     {
         if (node.MovementGraph.Count.Equals(0))
         {
             switch (node.LeftHand)
             {
+                case "Task":
+                    string[] splitMovementGraph = movementGraph.Split('-');
+                    foreach(string MNode in splitMovementGraph)
+                        node.MovementGraph.Add(MNode);
+                    ExpandMovementNode(node);
+                    break;
                 case "key":
-                    node.MovementGraph.Add("Start");
+                    node.MovementGraph.Add(movementGraph);
                     ExpandMovementNode(node);
                     break;
                 case "lock":
-                    node.MovementGraph.Add("Start");
+                    node.MovementGraph.Add(movementGraph);
                     ExpandMovementNode(node);
                     break;
                 case "fight":
-                    node.MovementGraph.Add("Start");
+                    node.MovementGraph.Add(movementGraph);
                     ExpandMovementNode(node);
                     break;
                 case "boss":
-                    node.MovementGraph.Add("Start");
+                    node.MovementGraph.Add(movementGraph);
                     ExpandMovementNode(node);
                     break;
                 case "split":
@@ -271,16 +234,15 @@ public class GenGra : MonoBehaviour
                     node.MovementGraph.Add("land");
                     ExpandMovementNode(node);
                     break;
+
             }
         }
     }
 
     private void ExpandMovementNode(Node node)
     {
-        
         MovementNode pick = Array.Find(movementNodeList.movementNodes, findNode => node.MovementGraph.Contains(findNode.LeftHand));
         List<string> tempMovementGraph = new List<string>();
-
         if (pick != null)
         {
             for (var i = 0; i < node.MovementGraph.Count; i++)
@@ -315,6 +277,7 @@ public class GenGra : MonoBehaviour
                 }
             }
             node.MovementGraph = checkMovementGraph(tempMovementGraph);
+            Logging(node.MovementGraph);
             ExpandMovementNode(node);
         }
         else
@@ -323,31 +286,54 @@ public class GenGra : MonoBehaviour
         }
     }
 
+    private void Logging(List<string> movementGraph)
+    {
+        string graph = "";
+        foreach (string graphNode in movementGraph)
+            graph = graph + "-" + graphNode;
+        Debug.Log(graph);
+    }
+
     private List<string> checkMovementGraph(List<string> graph)
     {
         for(var i = 0; i < graph.Count; i++)
         {
             switch (graph[i])
             {
+                case "resetJump":
+                    jumps--;
+                    break;
                 case "jump":
                     jumps++;
                     if (jumps > Player.GetComponent<PlayerStats>().Jumps)
+                    {
                         graph[i] = "EM";
+                        jumps--;
+                    }
                     break;
                 case "directionalJump":
                     jumps++;
                     if (jumps > Player.GetComponent<PlayerStats>().Jumps)
+                    {
                         graph[i] = "EM";
+                        jumps--;
+                    }
                     break;
                 case "Dash":
                     dashes++;
                     if (dashes > Player.GetComponent<PlayerStats>().Dashes)
+                    {
                         graph[i] = "EM";
+                        dashes--;
+                    }
                     break;
                 case "Glide":
                     glides++;
                     if (glides > Player.GetComponent<PlayerStats>().Glide)
+                    {
                         graph[i] = "EM";
+                        glides--;
+                    }
                     break;
                 case "land":
                     jumps = 0;

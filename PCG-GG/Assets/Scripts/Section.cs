@@ -26,25 +26,34 @@ public class Section : MonoBehaviour
         {
             if(Direction.Equals("left"))// went right first then left
             {
-                Floor.transform.localScale = new Vector3(rightBound, 0.5f, 0);
-                Floor.transform.localPosition = new Vector3((rightBound/2)+1, 0, 0);
+                Floor.transform.localScale = new Vector3(leftBound+2, 0.5f, 0);
+                Floor.transform.localPosition = new Vector3(rightBound - (leftBound / 2) , downBound, 0);
 
                 RightWallBottom.transform.localScale = new Vector3(0.5f, upBound + 5f, 0);
                 RightWallBottom.transform.localPosition = new Vector3(rightBound + 1.25f, (upBound/2) + 2.25f, 0);
 
                 Ceiling.transform.localScale = new Vector3(leftBound, 0.5f, 0);
-                Ceiling.transform.localPosition = new Vector3( rightBound - (leftBound/2) +1, upBound + 4.5f, 0);
+                Ceiling.transform.localPosition = new Vector3( rightBound - (leftBound/2) + 1, upBound + 4.5f, 0);
+
+                LeftWallBottom.transform.localScale = new Vector3(0.5f, upBound - upBoundOffset, 0);
+                LeftWallBottom.transform.localPosition = new Vector3(-leftBound + rightBound - 1.25f, (LeftWallBottom.transform.localScale.y - 0.5f) / 2, 0);
+
+                LeftWallTop.transform.localScale = new Vector3(0.5f, upBoundOffset + 0.5f, 0);
+                LeftWallTop.transform.position = new Vector3(-leftBound + rightBound + 1.25f, (upBound + 4.5f) - (upBoundOffset/2), 0);
             }
             else  // went left first then right
             {
-                Floor.transform.localScale = new Vector3(leftBound, 0.5f, 0);
-                Floor.transform.localPosition = new Vector3((-leftBound / 2) - 1, 0, 0);
+                Floor.transform.localScale = new Vector3(rightBound, 0.5f, 0);
+                Floor.transform.localPosition = new Vector3(-leftBound + (rightBound / 2) - 1, downBound, 0);
+
+                Ceiling.transform.localScale = new Vector3(rightBound, 0.5f, 0);
+                Ceiling.transform.localPosition = new Vector3(-leftBound + (rightBound / 2) - 1, upBound + 4.5f, 0);
 
                 LeftWallBottom.transform.localScale = new Vector3(0.5f, upBound + 5f, 0);
                 LeftWallBottom.transform.localPosition = new Vector3(-leftBound - 1.25f, (upBound / 2) + 2.25f, 0);
 
-                Ceiling.transform.localScale = new Vector3(rightBound, 0.5f, 0);
-                Ceiling.transform.localPosition = new Vector3(-leftBound + (rightBound / 2) - 1, upBound + 4.5f, 0);
+                LeftWallBottom.transform.localScale = new Vector3(0.5f, upBound + 5f, 0);
+                LeftWallBottom.transform.localPosition = new Vector3(-leftBound - 1.25f, (upBound / 2) + 2.25f, 0);
             }
         }
         else
